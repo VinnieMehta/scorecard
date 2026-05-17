@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product-Market Fit Scorecard · Vinnie Mehta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a1a;
+    --ink-muted: #6b6b6b;
+    --ink-faint: #a8a8a8;
+    --surface: #fafaf8;
+    --surface-raised: #ffffff;
+    --border: #e8e4dc;
+    --border-strong: #c8c4bc;
+    --accent: #2d4a3e;
+    --accent-light: #e8f0ec;
+    --accent-mid: #4a7c66;
+    --warm: #c4783c;
+    --warm-light: #fdf3eb;
+    --danger: #8b2c2c;
+    --danger-light: #fdf0f0;
+    --radius: 12px;
+    --radius-sm: 6px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .byline {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent-mid);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .header p {
+    font-size: 16px;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  .credential {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 1rem;
+    padding: 6px 12px;
+    background: var(--accent-light);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-mid);
+    flex-shrink: 0;
+  }
+
+  /* Contact section */
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 480px) {
+    .field-row { grid-template-columns: 1fr; }
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .field label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-muted);
+  }
+
+  .field input {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--surface);
+    transition: border-color 0.15s;
+    outline: none;
+  }
+
+  .field input:focus {
+    border-color: var(--accent);
+  }
+
+  .field input::placeholder {
+    color: var(--ink-faint);
+  }
+
+  /* Question cards */
+  .question-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+  }
+
+  .question-card.answered {
+    border-color: var(--border-strong);
+  }
+
+  .q-meta {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 6px;
+  }
+
+  .q-text {
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+
+  .q-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin-right: 4px;
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+  }
+
+  @media (max-width: 480px) {
+    .options { grid-template-columns: repeat(5, 1fr); }
+  }
+
+  .option-btn {
+    padding: 10px 4px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--ink-muted);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+    line-height: 1.3;
+  }
+
+  .option-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .option-btn.selected {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: white;
+    font-weight: 500;
+  }
+
+  /* Submit */
+  .submit-area {
+    margin-top: 1.5rem;
+  }
+
+  .progress-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.3s;
+    width: 0%;
+  }
+
+  .progress-label {
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--ink);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.02em;
+  }
+
+  .submit-btn:hover { background: var(--accent); }
+  .submit-btn:active { transform: scale(0.99); }
+
+  .error-msg {
+    font-size: 13px;
+    color: var(--danger);
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+  }
+
+  /* Results */
+  .result-section { display: none; }
+
+  .score-hero {
+    background: var(--accent);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .score-name {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .score-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .score-denom {
+    font-size: 14px;
+    opacity: 0.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .score-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .breakdown-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .breakdown-item {
+    margin-bottom: 14px;
+  }
+
+  .breakdown-item:last-child { margin-bottom: 0; }
+
+  .breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .breakdown-category {
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  .breakdown-score {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .bar-track {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bar-fill.high { background: var(--accent-mid); }
+  .bar-fill.mid { background: var(--warm); }
+  .bar-fill.low { background: var(--danger); }
+
+  .cta-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-card p {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+
+  .cta-btn:hover {
+    background: var(--ink);
+    color: white;
+    border-color: var(--ink);
+  }
+
+  .restart-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink-faint);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+  }
+
+  .restart-btn:hover {
+    color: var(--ink-muted);
+    border-color: var(--border-strong);
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .footer-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 16px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--ink-faint);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-links a:hover { color: var(--accent); }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .score-hero, .breakdown-card, .cta-card {
+    animation: fadeUp 0.4s ease forwards;
+  }
+
+  .breakdown-card { animation-delay: 0.1s; opacity: 0; }
+  .cta-card { animation-delay: 0.2s; opacity: 0; }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="byline">Vinnie Mehta · Product Strategist & Designer</div>
+    <h1>Product-Market Fit<br><em>Scorecard</em></h1>
+    <p>10 questions. 3 minutes. Instant score on your product strategy, UX readiness, and feature prioritization — from someone who's been in the trenches at AWS and across 10+ years of early-stage products.</p>
+    <div class="credential">
+      <span class="dot"></span>
+      10+ years · AWS · Early-stage startups · UX strategy
+    </div>
+  </div>
+
+  <!-- FORM SECTION -->
+  <div id="form-section">
+
+    <!-- Contact -->
+    <div class="contact-card">
+      <div class="section-label">Your details</div>
+      <div class="field-row">
+        <div class="field">
+          <label for="fname">First name</label>
+          <input type="text" id="fname" placeholder="Alex">
+        </div>
+        <div class="field">
+          <label for="email">Work email</label>
+          <input type="email" id="email" placeholder="alex@startup.com">
+        </div>
+      </div>
+      <div class="field">
+        <label for="company">Company / product name</label>
+        <input type="text" id="company" placeholder="Your startup name">
+      </div>
+    </div>
+
+    <!-- Questions -->
+    <div id="questions-wrapper"></div>
+
+    <!-- Submit -->
+    <div class="submit-area">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <p class="progress-label" id="progress-label">0 of 10 answered</p>
+      <button class="submit-btn" onclick="submitScorecard()">Get my score →</button>
+      <p class="error-msg" id="error-msg">Please fill in your name, email and answer all 10 questions.</p>
+    </div>
+  </div>
+
+  <!-- RESULT SECTION -->
+  <div class="result-section" id="result-section">
+
+    <div class="score-hero" id="score-hero">
+      <div class="score-name" id="result-name"></div>
+      <div class="score-number" id="score-number"></div>
+      <div class="score-denom">out of 50</div>
+      <div class="score-badge" id="score-badge"></div>
+    </div>
+
+    <div class="breakdown-card">
+      <div class="section-label" style="margin-bottom: 1rem;">Score breakdown</div>
+      <div id="breakdown-items"></div>
+    </div>
+
+    <div class="cta-card">
+      <h3 id="cta-title"></h3>
+      <p id="cta-body"></p>
+      <a href="https://calendly.com/vinniemehta" target="_blank" class="cta-btn">Book a free 30-min strategy call →</a>
+    </div>
+
+    <button class="restart-btn" onclick="resetScorecard()" style="margin-top: 10px;">Start over</button>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-name">Vinnie Mehta</div>
+    <div class="footer-links">
+      <a href="https://vinniemehta.com" target="_blank">Portfolio</a>
+      <a href="https://linkedin.com/in/vinniemehta" target="_blank">LinkedIn</a>
+      <a href="https://nanosarte.com" target="_blank">Nanosarte</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const questions = [
+  { id: 1, category: "Problem validation", text: "Have you validated your core problem with 10+ real users — not friends or family?" },
+  { id: 2, category: "Customer clarity", text: "Can you describe your ideal customer in one specific sentence, including their role and pain?" },
+  { id: 3, category: "Value proposition", text: "Can you articulate what makes your product 10x better — or 10x cheaper — than the current alternative?" },
+  { id: 4, category: "User journey", text: "Have you mapped the full user journey from first awareness to active habit, including drop-off points?" },
+  { id: 5, category: "Feature focus", text: "Do you know which 3 features drive 80% of the value your product delivers?" },
+  { id: 6, category: "Onboarding UX", text: "Have you tested your onboarding with real users who had no prior context about your product?" },
+  { id: 7, category: "Success metric", text: "Do you have a single north star metric that tells you if your product is working — and do you track it weekly?" },
+  { id: 8, category: "Friction awareness", text: "Can you name the single biggest UX friction point causing users to drop off or disengage?" },
+  { id: 9, category: "Roadmap discipline", text: "Do you have a prioritization framework that helps you say no to feature requests — including from investors?" },
+  { id: 10, category: "Retention signal", text: "Do you know what your users do when they are NOT using your product — and whether that is a threat or opportunity?" }
+];
+
+const optionLabels = ["Not yet", "Barely", "Somewhat", "Mostly", "Fully"];
+const answers = {};
+
+function renderQuestions() {
+  const wrapper = document.getElementById('questions-wrapper');
+  wrapper.innerHTML = '';
+  questions.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = 'card-' + q.id;
+
+    const meta = document.createElement('div');
+    meta.className = 'q-meta';
+    meta.textContent = q.category;
+
+    const text = document.createElement('p');
+    text.className = 'q-text';
+    text.innerHTML = '<span class="q-number">' + (i + 1) + '.</span> ' + q.text;
+
+    const opts = document.createElement('div');
+    opts.className = 'options';
+
+    optionLabels.forEach((label, idx) => {
+      const val = idx + 1;
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.id = 'q' + q.id + '_' + val;
+      btn.dataset.qid = q.id;
+      btn.dataset.val = val;
+      btn.textContent = label;
+      btn.onclick = () => selectOption(q.id, val);
+      opts.appendChild(btn);
+    });
+
+    card.appendChild(meta);
+    card.appendChild(text);
+    card.appendChild(opts);
+    wrapper.appendChild(card);
+  });
+}
+
+function selectOption(qid, value) {
+  answers[qid] = value;
+  optionLabels.forEach((_, idx) => {
+    const v = idx + 1;
+    const btn = document.getElementById('q' + qid + '_' + v);
+    if (v === value) {
+      btn.classList.add('selected');
+    } else {
+      btn.classList.remove('selected');
+    }
+  });
+  document.getElementById('card-' + qid).classList.add('answered');
+  updateProgress();
+}
+
+function updateProgress() {
+  const count = Object.keys(answers).length;
+  const pct = (count / 10) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = count + ' of 10 answered';
+}
+
+function submitScorecard() {
+  const fname = document.getElementById('fname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const errMsg = document.getElementById('error-msg');
+
+  if (!fname || !email || Object.keys(answers).length < 10) {
+    errMsg.style.display = 'block';
+    return;
+  }
+  errMsg.style.display = 'none';
+
+  const total = Object.values(answers).reduce((a, b) => a + b, 0);
+  showResult(fname, total);
+}
+
+function showResult(name, total) {
+  document.getElementById('form-section').style.display = 'none';
+  document.getElementById('result-section').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  document.getElementById('result-name').textContent = name + "'s score";
+  document.getElementById('score-number').textContent = total;
+
+  let badge, heroBg, ctaTitle, ctaBody;
+
+  if (total >= 41) {
+    badge = 'Strong foundation';
+    heroBg = '#2d4a3e';
+    ctaTitle = 'Strong strategy. The risk now is execution speed.';
+    ctaBody = 'You have solid foundations — most teams at your score lose to weaker strategies executed faster. A 30-minute session can identify where you can accelerate and what to ruthlessly cut.';
+  } else if (total >= 26) {
+    badge = 'Growth opportunity';
+    heroBg = '#8b5c2c';
+    ctaTitle = 'Gaps here compound the longer you wait.';
+    ctaBody = 'At alpha stage, fuzzy value propositions and unclear user journeys create technical debt that is expensive to undo. Let\'s pinpoint the two or three things that will change your trajectory.';
+  } else {
+    badge = 'Critical gaps';
+    heroBg = '#6b2323';
+    ctaTitle = 'Building without these foundations is expensive.';
+    ctaBody = 'Most early teams spend months building the wrong thing. A focused strategy session now can save you from rework that kills momentum — and sometimes kills the whole venture.';
+  }
+
+  document.getElementById('score-hero').style.background = heroBg;
+  document.getElementById('score-badge').textContent = badge;
+  document.getElementById('cta-title').textContent = ctaTitle;
+  document.getElementById('cta-body').textContent = ctaBody;
+
+  const breakdownEl = document.getElementById('breakdown-items');
+  breakdownEl.innerHTML = '';
+  questions.forEach(q => {
+    const score = answers[q.id] || 0;
+    const pct = (score / 5) * 100;
+    const colorClass = score >= 4 ? 'high' : score >= 3 ? 'mid' : 'low';
+    const item = document.createElement('div');
+    item.className = 'breakdown-item';
+    item.innerHTML = `
+      <div class="breakdown-row">
+        <span class="breakdown-category">${q.category}</span>
+        <span class="breakdown-score">${score}/5</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill ${colorClass}" style="width: 0%" data-pct="${pct}"></div>
+      </div>
+    `;
+    breakdownEl.appendChild(item);
+  });
+
+  setTimeout(() => {
+    document.querySelectorAll('.bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.pct + '%';
+    });
+  }, 100);
+}
+
+function resetScorecard() {
+  Object.keys(answers).forEach(k => delete answers[k]);
+  document.getElementById('result-section').style.display = 'none';
+  document.getElementById('form-section').style.display = 'block';
+  document.getElementById('fname').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('company').value = '';
+  document.getElementById('progress-fill').style.width = '0%';
+  document.getElementById('progress-label').textContent = '0 of 10 answered';
+  renderQuestions();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+renderQuestions();
+</script>
+</body>
+</html>
