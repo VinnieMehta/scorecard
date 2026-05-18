@@ -10,7 +10,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --teal:#0d9488;--teal-dark:#0f766e;--teal-mid:#14b8a6;
-  --ink:#111827;--ink-muted:#6b7280;--ink-faint:#9ca3af;
+  --ink:#111827;--ink-muted:#6b7280;
   --surface:#f9fafb;--card:#ffffff;--border:#e5e7eb;--border-mid:#d1d5db;
   --radius:14px;--radius-sm:8px;--radius-xs:6px;
 }
@@ -21,8 +21,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--surface);color:var(--ink)
 .header{margin-bottom:1.25rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
 .byline-row{margin-bottom:1.25rem;text-align:left}
 .logo-img{width:36px;height:36px;object-fit:contain;flex-shrink:0;mix-blend-mode:multiply}
-.byline-text{font-size:13px;color:var(--ink-muted);line-height:1.4}.byline-text strong{font-family:"Fraunces",serif;font-size:16px;font-weight:400;color:var(--ink)}
-.byline-text strong{font-weight:500;color:var(--ink)}
+.byline-text{font-size:13px;color:var(--ink-muted);line-height:1.4}.byline-text strong{font-family:"Fraunces",serif;font-size:16px;font-weight:500;color:var(--ink)}
 
 h1{font-family:"Fraunces",serif;line-height:1.1;color:var(--ink);margin-bottom:1.25rem}
 .h1-line1{display:block;font-size:clamp(18px,3vw,24px);font-weight:600;letter-spacing:-.01em;text-transform:uppercase;color:var(--ink)}
@@ -37,7 +36,7 @@ h1{font-family:"Fraunces",serif;line-height:1.1;color:var(--ink);margin-bottom:1
 .contact-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.25rem;margin-top:1.5rem}
 .card-label{font-size:12px;font-weight:600;color:var(--ink);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.75rem}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}.field-row:last-child{margin-bottom:0}
-@media(max-width:500px){.field-row{grid-template-columns:1fr}} @media(max-width:680px){.contact-card,.q-card,.qualify-card,.result-card,.cta-card,.score-hero{margin-left:0;margin-right:0}}
+@media(max-width:500px){.field-row{grid-template-columns:1fr}} @media(max-width:680px){.contact-card,.q-card,.qualify-card,.result-card,.cta-card,.score-card{margin-left:0;margin-right:0}}
 .field{display:flex;flex-direction:column;gap:5px}
 .field label{font-size:13px;font-weight:500;color:var(--ink-muted)}
 .field input,.field select{padding:10px 13px;border:1px solid var(--border);border-radius:var(--radius-xs);font-family:"DM Sans",sans-serif;font-size:14px;color:var(--ink);background:var(--surface);transition:border-color .15s,box-shadow .15s;outline:none;-webkit-appearance:none;appearance:none;width:100%}
@@ -82,11 +81,19 @@ h1{font-family:"Fraunces",serif;line-height:1.1;color:var(--ink);margin-bottom:1
 .error-msg{font-size:13px;color:#991b1b;text-align:center;margin-top:10px;display:none;padding:10px;background:#fff5f5;border-radius:var(--radius-xs);border:1px solid #fecaca}
 
 .result-section{display:none;padding-top:.5rem}
-.score-hero{border-radius:var(--radius);padding:1.75rem 1.25rem;text-align:center;margin-bottom:.625rem;color:white}
-.score-eyebrow{font-size:11px;opacity:.65;margin-bottom:.375rem;letter-spacing:.08em;text-transform:uppercase;font-family:"DM Sans",sans-serif}
-.score-number{font-family:"Fraunces",serif;font-size:52px;font-weight:300;line-height:1;margin-bottom:.25rem}
-.score-denom{font-size:12px;opacity:.55;margin-bottom:1rem;font-family:"DM Sans",sans-serif}
-.score-badge{display:inline-block;padding:5px 14px;background:rgba(255,255,255,.15);border-radius:100px;font-size:12px;font-weight:500;font-family:"DM Sans",sans-serif;letter-spacing:.02em}
+.score-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;margin-bottom:.625rem;display:flex;align-items:center;gap:1.75rem}
+.score-eyebrow{font-size:11px;color:var(--ink-muted);margin-bottom:.5rem;letter-spacing:.08em;text-transform:uppercase;font-family:"DM Sans",sans-serif}
+.score-ring-wrap{position:relative;width:132px;height:132px;flex:none}
+.score-ring{display:block}
+.ring-track{stroke:#e5e7eb}
+.ring-fill{stroke:var(--teal);transition:stroke-dashoffset 1s cubic-bezier(.22,1,.36,1)}
+.score-ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+.score-number{font-family:"Fraunces",serif;font-size:40px;font-weight:400;line-height:1;color:var(--ink)}
+.score-denom{font-size:13px;color:var(--ink-muted);font-family:"DM Sans",sans-serif}
+.score-summary{flex:1;min-width:0}
+.score-verdict{font-family:"Fraunces",serif;font-size:19px;font-weight:500;line-height:1.35;color:var(--ink);margin:0 0 .875rem}
+.score-badge{display:inline-block;padding:6px 16px;background:rgba(13,148,136,.1);color:var(--teal);border-radius:100px;font-size:12.5px;font-weight:600;font-family:"DM Sans",sans-serif;letter-spacing:.01em}
+@media(max-width:560px){.score-card{flex-direction:column;text-align:center;gap:1.25rem;padding:1.75rem 1.25rem}.score-summary{display:flex;flex-direction:column;align-items:center}}
 .result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:.625rem}
 .result-card-label{font-size:12px;font-weight:500;color:var(--ink-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem}
 .breakdown-item{margin-bottom:13px}
@@ -105,19 +112,19 @@ h1{font-family:"Fraunces",serif;line-height:1.1;color:var(--ink);margin-bottom:1
 .cta-btn:hover{background:var(--teal-dark)}
 .cta-btn:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 .scarcity{text-align:center;font-size:12px;color:var(--ink-muted);margin-top:.625rem}
-.restart-btn{display:block;width:100%;padding:12px;background:transparent;border:1px solid var(--border);border-radius:var(--radius-sm);font-family:"DM Sans",sans-serif;font-size:14px;color:var(--ink-muted);cursor:pointer;text-align:center;transition:all .15s;margin-top:.625rem}
-.restart-btn:hover{color:var(--ink-muted);border-color:var(--border-mid)}
+.restart-btn{display:block;width:100%;padding:13px;background:transparent;border:1px solid var(--border-mid);border-radius:var(--radius-sm);font-family:"DM Sans",sans-serif;font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;text-align:center;transition:all .15s;margin-top:.625rem}
+.restart-btn:hover{color:var(--teal);border-color:var(--teal)}
 .restart-btn:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
 
 .footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.footer-logo{width:24px;height:24px;object-fit:cover;opacity:.5;border-radius:50%;mix-blend-mode:multiply}
+.footer-logo{width:24px;height:24px;object-fit:contain;opacity:.5;border-radius:50%;mix-blend-mode:multiply}
 .footer-links{display:flex;gap:16px}
 .footer-links a{font-size:12.5px;color:var(--ink-muted);text-decoration:none;transition:color .15s}
 .footer-links a:hover{color:var(--teal)}
 .footer-links a:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:2px}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.score-hero{animation:fadeUp .35s ease forwards}
+.score-card{animation:fadeUp .35s ease forwards}
 .result-card{animation:fadeUp .3s ease .06s both}
 .cta-card{animation:fadeUp .3s ease .12s both}
 select.placeholder{color:var(--ink-muted)}.followup-note{text-align:center;font-size:12px;color:var(--ink-muted);margin-top:.5rem} </style>
@@ -128,7 +135,6 @@ select.placeholder{color:var(--ink-muted)}.followup-note{text-align:center;font-
 
 <div class="header">
   <div class="byline-row"><div class="byline-text"><strong>Vinnie Mehta</strong> · Product Strategist &amp; Designer</div></div>
-  </div>
   <h1>
     <span class="h1-line1">Are your customers actually using</span>
     <span class="h1-line2">what you built?</span>
@@ -185,11 +191,24 @@ select.placeholder{color:var(--ink-muted)}.followup-note{text-align:center;font-
 </div>
 
 <div class="result-section" id="result-section" tabindex="-1">
-  <div class="score-hero" id="score-hero">
-    <div class="score-eyebrow" id="result-name"></div>
-    <div class="score-number" id="score-number"></div>
-    <div class="score-denom">out of 50</div>
-    <div class="score-badge" id="score-badge"></div>
+  <div class="score-card" id="score-hero">
+    <div class="score-ring-wrap">
+      <svg class="score-ring" viewBox="0 0 120 120" width="132" height="132" aria-hidden="true">
+        <circle class="ring-track" cx="60" cy="60" r="52" fill="none" stroke-width="8"></circle>
+        <circle class="ring-fill" id="ring-fill" cx="60" cy="60" r="52" fill="none" stroke-width="8"
+                stroke-linecap="round" transform="rotate(-90 60 60)"
+                stroke-dasharray="326.726" stroke-dashoffset="326.726"></circle>
+      </svg>
+      <div class="score-ring-center">
+        <span class="score-number" id="score-number"></span>
+        <span class="score-denom">/ 50</span>
+      </div>
+    </div>
+    <div class="score-summary">
+      <div class="score-eyebrow" id="result-name"></div>
+      <p class="score-verdict" id="score-verdict"></p>
+      <div class="score-badge" id="score-badge"></div>
+    </div>
   </div>
   <div class="result-card">
     <div class="result-card-label">Score breakdown</div>
@@ -303,18 +322,31 @@ function submitScorecard(){
   if(!fname||!email||Object.keys(answers).length<10||!selectedChallenge){err.style.display="block";return}
   err.style.display="none";
   var total=Object.values(answers).reduce(function(a,b){return a+b},0);
-  sendToSheets(fname,email,total);showResult(fname,total);
-}
-function sendToSheets(name,email,score){
-  var URL="YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
-  if(URL.indexOf("YOUR_")===0)return;
-  fetch(URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({
-    timestamp:new Date().toISOString(),name:name,email:email,
+  var sec={"Problem clarity":[1,2,3],"Solution delivery":[4,5,6,7],"Retention signal":[8,9,10]};
+  var secMax={"Problem clarity":15,"Solution delivery":20,"Retention signal":15};
+  var breakdown={};
+  Object.keys(sec).forEach(function(s){
+    breakdown[s]=sec[s].reduce(function(a,id){return a+(answers[id]||0)},0)+"/"+secMax[s];
+  });
+  var tier=total>=36?"Strong foundations":total>=21?"Gaps that compound":"Critical gaps";
+  var challengeLabels={aha:"Getting users to their first aha moment",retention:"Keeping users coming back after week 1",features:"Building the right features in the right order"};
+  var payload={
+    timestamp:new Date().toISOString(),
+    name:fname,email:email,
     company:document.getElementById("company").value,
     website:document.getElementById("website").value,
     stage:document.getElementById("stage").value,
-    score:score,challenge:selectedChallenge
-  })}).catch(function(){});
+    score:total,tier:tier,
+    challenge:selectedChallenge,
+    challengeLabel:challengeLabels[selectedChallenge]||selectedChallenge,
+    breakdown:breakdown
+  };
+  sendToSheets(payload);showResult(fname,total);
+}
+function sendToSheets(payload){
+  var URL="YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+  if(URL.indexOf("YOUR_")===0)return;
+  fetch(URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)}).catch(function(){});
 }
 function showResult(name,total){
   document.getElementById("form-section").style.display="none";
@@ -322,19 +354,30 @@ function showResult(name,total){
   window.scrollTo({top:0,behavior:"smooth"});
   document.getElementById("result-name").textContent=name+"'s score";
   document.getElementById("score-number").textContent=total;
-  var badge,bg,title,body,scarcity;
-  if(total>=36){badge="Strong foundations";bg="#0f766e";title="Your foundations are solid. The question now is speed.";body="Most products at your score lose to weaker strategies executed faster. A 30-minute session identifies exactly where you can accelerate — and what to stop building.";scarcity="Early access: <strong>$200</strong> · Regular price $500";}
-  else if(total>=21){badge="Gaps that compound";bg="#b45309";title="You're building the right thing — but users aren't getting there.";body="The gap between what your product promises and what users actually experience is costing you retention. This is fixable — and much cheaper to address now than after your next hire or funding round.";scarcity="Early access: <strong>$200</strong> · 5 spots remaining · Regular price $500";}
-  else{badge="Critical gaps";bg="#991b1b";title="Your product is ahead of your user experience.";body="Users can't find the value yet — not because the product is wrong, but because the path to value is broken. Most teams discover this too late. Let's map it before it costs more.";scarcity="Early access: <strong>$200</strong> · 5 spots remaining · Regular price $500";}
-  document.getElementById("score-hero").style.background=bg;
+  var badge,title,scarcity,body,verdict;
+  if(total>=36){badge="Strong foundations";verdict="You're in the top tier. The work now is speed, not direction.";title="Your foundations are solid. The question now is speed.";scarcity="Early access: <strong>$200</strong> · Regular price $500";}
+  else if(total>=21){badge="Gaps that compound";verdict="The right product — but users aren't reliably reaching the value.";title="You're building the right thing — but users aren't getting there.";scarcity="Early access: <strong>$200</strong> · 5 spots remaining · Regular price $500";}
+  else{badge="Critical gaps";verdict="Your product is ahead of the experience around it.";title="Your product is ahead of your user experience.";scarcity="Early access: <strong>$200</strong> · 5 spots remaining · Regular price $500";}
+  var challengeBody={
+    aha:"You told me getting users to their first aha moment is your biggest challenge. That moment isn't a feature — it's a sequence, and most products bury it three clicks too deep. In 30 minutes we'll map exactly where your activation path loses people and what to cut so the value lands sooner.",
+    retention:"You told me keeping users past week 1 is what's hurting most. Week-1 churn is almost never about the product being wrong — it's about the user never reaching the reason to come back. We'll spend 30 minutes pinpointing your drop-off moment and the specific hook that brings them back on day 3 and day 7.",
+    features:"You told me building the right features in the right order is the hard part. Most roadmaps are sequenced by what's easy to build, not by what unlocks retention. In 30 minutes we'll work out which single thing to build next — and, just as importantly, what to stop building."
+  };
+  body=challengeBody[selectedChallenge]||"In 30 focused minutes we'll work through exactly where your product-user fit is breaking down and what to do about it first.";
+  var circ=326.726, ring=document.getElementById("ring-fill");
+  ring.style.strokeDashoffset=circ;
+  requestAnimationFrame(function(){requestAnimationFrame(function(){
+    ring.style.strokeDashoffset=circ*(1-total/50);
+  });});
   document.getElementById("score-badge").textContent=badge;
+  document.getElementById("score-verdict").textContent=verdict;
   document.getElementById("cta-title").textContent=title;
   document.getElementById("cta-body").textContent=body;
   document.getElementById("scarcity-text").innerHTML=scarcity;
   var email=document.getElementById("email").value.trim();
   var fn=document.getElementById("followup-note");
   fn.style.display="block";
-  fn.textContent="We\'ll follow up at "+email+" within 24 hours.";
+  fn.innerHTML="Your full report is on its way to <strong>"+email+"</strong>. I read every one personally — expect a note from me within 24 hours.";
   var sections={"Problem clarity":[1,2,3],"Solution delivery":[4,5,6,7],"Retention signal":[8,9,10]};
   var maxes={"Problem clarity":15,"Solution delivery":20,"Retention signal":15};
   var el=document.getElementById("breakdown-items");el.innerHTML="";
@@ -351,19 +394,19 @@ function showResult(name,total){
 function resetScorecard(){
   Object.keys(answers).forEach(function(k){delete answers[k]});
   selectedChallenge="";
+  document.querySelectorAll(".challenge-opt").forEach(function(b){b.setAttribute("aria-pressed","false")});
   document.getElementById("result-section").style.display="none";
   document.getElementById("form-section").style.display="block";
   ["fname","email","company","website"].forEach(function(id){document.getElementById(id).value=""});
   document.getElementById("stage").value="";
   document.getElementById("progress-fill").style.width="0%";
   document.getElementById("progress-label").textContent="0 of 10 answered";
+  document.querySelector(".progress-bar").setAttribute("aria-valuenow",0);
   document.getElementById("qualify-card").style.display="none";
   document.getElementById("error-msg").style.display="none";
   renderQuestions();
-document.getElementById("stage").addEventListener("change", function(){
-  this.classList.toggle("placeholder", this.value === "");
-});
-document.getElementById("stage").classList.add("placeholder");window.scrollTo({top:0,behavior:"smooth"});
+  document.getElementById("stage").classList.add("placeholder");
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 renderQuestions();
 document.getElementById("stage").addEventListener("change", function(){
