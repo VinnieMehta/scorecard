@@ -405,10 +405,14 @@ function showResult(name,total){
   var bookLink=document.getElementById("book-link");
   if(bookLink){
     var base="https://calendly.com/viinniemehta/20min";
+    var clabels={aha:"Getting users to their first aha moment",retention:"Keeping users coming back after week 1",features:"Building the right features in the right order"};
+    var ctier=total>=36?"Strong foundations":total>=21?"Gaps that compound":"Critical gaps";
+    var summary="Score "+total+"/50 ("+ctier+") · Challenge: "+(clabels[selectedChallenge]||selectedChallenge||"—");
     var params=[];
     if(name) params.push("name="+encodeURIComponent(name));
     if(email) params.push("email="+encodeURIComponent(email));
-    bookLink.href=params.length?base+"?"+params.join("&"):base;
+    params.push("a1="+encodeURIComponent(summary));
+    bookLink.href=base+"?"+params.join("&");
   }
   var fn=document.getElementById("followup-note");
   fn.style.display="block";
