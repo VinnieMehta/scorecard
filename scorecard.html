@@ -253,7 +253,7 @@ select.placeholder{color:var(--ink-muted)}.followup-note{text-align:center;font-
   <div class="cta-card">
     <div class="cta-eyebrow">What to expect on the call and after</div>
     <p class="oncall-copy">We review your results to find your product's biggest friction points. From there, we can scope a paid Strategy &amp; UX Sprint to design the solutions for your dev team.</p>
-    <div class="cta-btn-wrap"><a href="https://calendly.com/viinniemehta/20min" target="_blank" rel="noopener noreferrer" class="cta-btn">Book 20-min call with Vinnie →</a></div>
+    <div class="cta-btn-wrap"><a id="book-link" href="https://calendly.com/viinniemehta/20min" target="_blank" rel="noopener noreferrer" class="cta-btn">Book 20-min call with Vinnie →</a></div>
     <p class="scarcity" id="scarcity-text"></p>
     <p class="followup-note" id="followup-note" style="display:none"></p>
   </div>
@@ -402,6 +402,14 @@ function showResult(name,total){
   document.getElementById("score-verdict").textContent=verdict;
   document.getElementById("scarcity-text").innerHTML=scarcity;
   var email=document.getElementById("email").value.trim();
+  var bookLink=document.getElementById("book-link");
+  if(bookLink){
+    var base="https://calendly.com/viinniemehta/20min";
+    var params=[];
+    if(name) params.push("name="+encodeURIComponent(name));
+    if(email) params.push("email="+encodeURIComponent(email));
+    bookLink.href=params.length?base+"?"+params.join("&"):base;
+  }
   var fn=document.getElementById("followup-note");
   fn.style.display="block";
   fn.innerHTML="Your full report is on its way to <strong>"+email+"</strong>. I read every one personally — expect a note from me within 24 hours.";
