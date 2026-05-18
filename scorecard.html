@@ -379,7 +379,7 @@ function submitScorecard(){
   sendToSheets(payload);showResult(fname,total);
 }
 function sendToSheets(payload){
-  var URL="YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+  var URL="https://script.google.com/macros/s/AKfycbxZ6c_LQA9f9WeXsZ6elfbGkWOaZ8EZ7OwOo_EedbIYo50j0Rmfa7yyXL9gTRtvLnMBJQ/exec";
   if(URL.indexOf("YOUR_")===0)return;
   fetch(URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)}).catch(function(){});
 }
