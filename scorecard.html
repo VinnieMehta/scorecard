@@ -255,7 +255,6 @@ select.placeholder{color:var(--ink-muted)}.followup-note{text-align:center;font-
   <div class="cta-card">
     <div class="cta-eyebrow">What this means for you</div>
     <h3 id="cta-title"></h3>
-    <p id="cta-body"></p>
     <p class="get-label">What you'll get on the audit</p>
     <ul class="get-block">
       <li>Where your product-user fit is breaking — specific to your answers, not generic advice</li>
@@ -264,7 +263,7 @@ select.placeholder{color:var(--ink-muted)}.followup-note{text-align:center;font-
     </ul>
     <div class="cta-btn-wrap"><a href="https://calendly.com/viinniemehta/30min" target="_blank" rel="noopener noreferrer" class="cta-btn">Book my 20-min audit →</a></div>
     <p class="scarcity" id="scarcity-text"></p>
-    <p class="paid-hint">The audit is free and complete on its own. If you want help executing the fix path afterward, that's where a focused Sprint comes in — but the call itself has no pitch.</p>
+    <p class="paid-hint">The audit is free with no pitch. If you want help executing the fix path, that's where a focused Sprint comes in.</p>
     <p class="followup-note" id="followup-note" style="display:none"></p>
   </div>
   <button class="restart-btn" onclick="resetScorecard()">Start over</button>
@@ -399,16 +398,10 @@ function showResult(name,total){
   window.scrollTo({top:0,behavior:"smooth"});
   document.getElementById("result-name").textContent=name+"'s score";
   document.getElementById("score-number").textContent=total;
-  var badge,title,scarcity,body,verdict;
+  var badge,title,scarcity,verdict;
   if(total>=36){badge="Strong foundations";verdict="You're in the top tier. The work now is speed, not direction.";title="Your foundations are solid. The question now is speed.";scarcity="Free 20-minute audit · No pitch, just the diagnosis";}
   else if(total>=21){badge="Gaps that compound";verdict="The right product — but users aren't reliably reaching the value.";title="You're building the right thing — but users aren't getting there.";scarcity="Free 20-minute audit · A few spots open this month";}
   else{badge="Critical gaps";verdict="Your product is ahead of the experience around it.";title="Your product is ahead of your user experience.";scarcity="Free 20-minute audit · A few spots open this month";}
-  var challengeBody={
-    aha:"You told me getting users to their first aha moment is your biggest challenge. That moment isn't a feature — it's a sequence, and most products bury it three clicks too deep. In the audit we'll map exactly where your activation path loses people and what to cut so the value lands sooner.",
-    retention:"You told me keeping users past week 1 is what's hurting most. Week-1 churn is almost never about the product being wrong — it's about the user never reaching the reason to come back. In the audit we'll pinpoint your drop-off moment and the specific hook that brings them back on day 3 and day 7.",
-    features:"You told me building the right features in the right order is the hard part. Most roadmaps are sequenced by what's easy to build, not by what unlocks retention. In the audit we'll work out which single thing to build next — and, just as importantly, what to stop building."
-  };
-  body=challengeBody[selectedChallenge]||"In 30 focused minutes we'll work through exactly where your product-user fit is breaking down and what to do about it first.";
   var circ=326.726, ring=document.getElementById("ring-fill");
   ring.style.strokeDashoffset=circ;
   requestAnimationFrame(function(){requestAnimationFrame(function(){
@@ -417,7 +410,6 @@ function showResult(name,total){
   document.getElementById("score-badge").textContent=badge;
   document.getElementById("score-verdict").textContent=verdict;
   document.getElementById("cta-title").textContent=title;
-  document.getElementById("cta-body").textContent=body;
   document.getElementById("scarcity-text").innerHTML=scarcity;
   var email=document.getElementById("email").value.trim();
   var fn=document.getElementById("followup-note");
