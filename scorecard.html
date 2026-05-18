@@ -140,12 +140,8 @@ h1{font-family:"Fraunces",serif;line-height:1.1;color:var(--ink);margin-bottom:1
 .cta-card h3{font-family:"Fraunces",serif;font-size:20px;font-weight:400;color:var(--ink);line-height:1.35;margin-bottom:.625rem}
 .cta-card p{font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:1.25rem}
 .cta-btn-wrap{text-align:center;margin-top:.25rem}
-.get-block{margin:0 0 1.25rem;padding:0;list-style:none}
-.get-block li{position:relative;padding-left:1.375rem;font-size:14px;color:var(--ink);line-height:1.6;margin-bottom:.5rem}
-.get-block li:last-child{margin-bottom:0}
-.get-block li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--teal)}
-.get-label{font-family:"DM Sans",sans-serif;font-size:11px;font-weight:600;color:var(--ink-muted);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .625rem}
-.paid-hint{font-size:13px;color:var(--ink-muted);line-height:1.6;margin-top:.875rem;text-align:center}
+.oncall-copy{font-size:14px;color:var(--ink-muted);line-height:1.7;margin:0 0 1.25rem}
+.oncall-copy strong{color:var(--ink);font-weight:600}
 .cta-btn{display:inline-block;width:auto;padding:14px 28px;background:var(--teal);color:white;border:none;border-radius:var(--radius-sm);font-family:"DM Sans",sans-serif;font-size:14.5px;font-weight:500;text-align:center;cursor:pointer;text-decoration:none;transition:background .15s}
 .cta-btn:hover{background:var(--teal-dark)}
 .cta-btn:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
@@ -255,15 +251,9 @@ select.placeholder{color:var(--ink-muted)}.followup-note{text-align:center;font-
   <div class="cta-card">
     <div class="cta-eyebrow">What this means for you</div>
     <h3 id="cta-title"></h3>
-    <p class="get-label">What you'll get on the audit</p>
-    <ul class="get-block">
-      <li>Where your product-user fit is breaking — specific to your answers, not generic advice</li>
-      <li>What that gap is quietly costing you right now</li>
-      <li>The fix path, in order, and exactly where to start first</li>
-    </ul>
+    <p class="oncall-copy"><strong>On the call:</strong> We review your results to find your product's biggest friction points. From there, we can scope a paid Strategy &amp; UX Sprint to design the solutions for your dev team.</p>
     <div class="cta-btn-wrap"><a href="https://calendly.com/viinniemehta/30min" target="_blank" rel="noopener noreferrer" class="cta-btn">Book my 20-min audit →</a></div>
     <p class="scarcity" id="scarcity-text"></p>
-    <p class="paid-hint">The audit is free with no pitch. If you want help executing the fix path, that's where a focused Sprint comes in.</p>
     <p class="followup-note" id="followup-note" style="display:none"></p>
   </div>
   <button class="restart-btn" onclick="resetScorecard()">Start over</button>
