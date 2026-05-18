@@ -19,14 +19,15 @@
          padding, .625rem margin-bottom. ALL cards identical.
   EYEBROW (any small label inside a card): DM Sans, 11px, weight 600,
          --ink-muted, uppercase, letter-spacing .08em. ONE spec.
-         Classes: .score-eyebrow .cta-eyebrow — keep identical.
+         Classes: .score-eyebrow .cta-eyebrow .result-card-label — keep identical.
   FRAUNCES HEADINGS: weight 400, 20px for in-card headings
          (.score-verdict, .cta-card h3 — keep identical).
          h1 hero is the only heavier/larger Fraunces.
   BUTTONS: inline-block, width auto, centered via wrapper.
          NEVER full-width block. (.submit-btn, .cta-btn)
-  Secondary action (.restart-btn): underlined text link,
-         --ink-muted, never a bordered box.
+  Secondary action (.restart-btn): content-width bordered button,
+         --border-mid border, --ink text, teal on hover. Subordinate
+         to the CTA but clearly visible — never a text link.
   ============================================================
 -->
 <html lang="en">
@@ -113,7 +114,7 @@ h1{font-family:"Fraunces",serif;line-height:1.1;color:var(--ink);margin-bottom:1
 
 .result-section{display:none;padding-top:.5rem}
 .score-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:.625rem;display:flex;align-items:center;gap:1.75rem}
-.score-eyebrow{font-family:"DM Sans",sans-serif;font-size:11px;font-weight:600;color:var(--ink-muted);margin-bottom:.5rem;letter-spacing:.08em;text-transform:uppercase}
+.score-eyebrow{font-family:"DM Sans",sans-serif;font-size:11px;font-weight:600;color:var(--ink);margin-bottom:.5rem;letter-spacing:.08em;text-transform:uppercase}
 .score-ring-wrap{position:relative;width:132px;height:132px;flex:none}
 .score-ring{display:block}
 .ring-track{stroke:#e5e7eb}
@@ -126,7 +127,7 @@ h1{font-family:"Fraunces",serif;line-height:1.1;color:var(--ink);margin-bottom:1
 .score-badge{display:inline-block;padding:6px 16px;background:rgba(13,148,136,.1);color:var(--teal);border-radius:100px;font-size:12.5px;font-weight:600;font-family:"DM Sans",sans-serif;letter-spacing:.01em}
 @media(max-width:560px){.score-card{flex-direction:column;text-align:center;gap:1.25rem;padding:1.25rem}.score-summary{display:flex;flex-direction:column;align-items:center}}
 .result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:.625rem}
-.result-card-label{font-size:12px;font-weight:500;color:var(--ink-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem}
+.result-card-label{font-family:"DM Sans",sans-serif;font-size:11px;font-weight:600;color:var(--ink);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem}
 .breakdown-item{margin-bottom:13px}
 .breakdown-item:last-child{margin-bottom:0}
 .breakdown-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
@@ -136,7 +137,7 @@ h1{font-family:"Fraunces",serif;line-height:1.1;color:var(--ink);margin-bottom:1
 .bar-fill{height:100%;border-radius:2px;transition:width .9s cubic-bezier(.16,1,.3,1)}
 .bar-high{background:var(--teal)}.bar-mid{background:#f59e0b}.bar-low{background:#ef4444}
 .cta-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:.625rem}
-.cta-eyebrow{font-family:"DM Sans",sans-serif;font-size:11px;font-weight:600;color:var(--ink-muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.cta-eyebrow{font-family:"DM Sans",sans-serif;font-size:11px;font-weight:600;color:var(--ink);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
 .cta-card h3{font-family:"Fraunces",serif;font-size:20px;font-weight:400;color:var(--ink);line-height:1.35;margin-bottom:.625rem}
 .cta-card p{font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:1.25rem}
 .cta-btn-wrap{text-align:center;margin-top:.25rem}
@@ -146,9 +147,10 @@ h1{font-family:"Fraunces",serif;line-height:1.1;color:var(--ink);margin-bottom:1
 .cta-btn:hover{background:var(--teal-dark)}
 .cta-btn:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 .scarcity{text-align:center;font-size:12px;color:var(--ink-muted);margin-top:.625rem}
-.restart-btn{display:block;margin:1rem auto 0;padding:8px 18px;background:transparent;border:none;font-family:"DM Sans",sans-serif;font-size:13px;font-weight:500;color:var(--ink-muted);cursor:pointer;text-align:center;text-decoration:underline;text-underline-offset:3px;transition:color .15s}
-.restart-btn:hover{color:var(--teal)}
-.restart-btn:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:2px}
+.restart-btn{display:inline-block;margin:1rem auto 0;padding:11px 24px;background:transparent;border:1px solid var(--border-mid);border-radius:var(--radius-sm);font-family:"DM Sans",sans-serif;font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;text-align:center;transition:border-color .15s,color .15s}
+.restart-btn:hover{color:var(--teal);border-color:var(--teal)}
+.restart-btn:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.restart-wrap{text-align:center}
 
 .footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .footer-logo{width:24px;height:24px;object-fit:contain;opacity:.5;border-radius:50%;mix-blend-mode:multiply}
@@ -249,14 +251,13 @@ select.placeholder{color:var(--ink-muted)}.followup-note{text-align:center;font-
     <div id="breakdown-items"></div>
   </div>
   <div class="cta-card">
-    <div class="cta-eyebrow">What this means for you</div>
-    <h3 id="cta-title"></h3>
-    <p class="oncall-copy"><strong>On the call:</strong> We review your results to find your product's biggest friction points. From there, we can scope a paid Strategy &amp; UX Sprint to design the solutions for your dev team.</p>
-    <div class="cta-btn-wrap"><a href="https://calendly.com/viinniemehta/30min" target="_blank" rel="noopener noreferrer" class="cta-btn">Book my 20-min audit →</a></div>
+    <div class="cta-eyebrow">What to expect on the call and after</div>
+    <p class="oncall-copy">We review your results to find your product's biggest friction points. From there, we can scope a paid Strategy &amp; UX Sprint to design the solutions for your dev team.</p>
+    <div class="cta-btn-wrap"><a href="https://calendly.com/viinniemehta/30min" target="_blank" rel="noopener noreferrer" class="cta-btn">Book 20-min call with Vinnie →</a></div>
     <p class="scarcity" id="scarcity-text"></p>
     <p class="followup-note" id="followup-note" style="display:none"></p>
   </div>
-  <button class="restart-btn" onclick="resetScorecard()">Start over</button>
+  <div class="restart-wrap"><button class="restart-btn" onclick="resetScorecard()">Start over</button></div>
 </div>
 
 <div class="footer">
@@ -388,10 +389,10 @@ function showResult(name,total){
   window.scrollTo({top:0,behavior:"smooth"});
   document.getElementById("result-name").textContent=name+"'s score";
   document.getElementById("score-number").textContent=total;
-  var badge,title,scarcity,verdict;
-  if(total>=36){badge="Strong foundations";verdict="You're in the top tier. The work now is speed, not direction.";title="Your foundations are solid. The question now is speed.";scarcity="Free 20-minute audit · No pitch, just the diagnosis";}
-  else if(total>=21){badge="Gaps that compound";verdict="The right product — but users aren't reliably reaching the value.";title="You're building the right thing — but users aren't getting there.";scarcity="Free 20-minute audit · A few spots open this month";}
-  else{badge="Critical gaps";verdict="Your product is ahead of the experience around it.";title="Your product is ahead of your user experience.";scarcity="Free 20-minute audit · A few spots open this month";}
+  var badge,scarcity,verdict;
+  if(total>=36){badge="Strong foundations";verdict="You're in the top tier. The work now is speed, not direction.";scarcity="Free 20-minute audit · No pitch, just the diagnosis";}
+  else if(total>=21){badge="Gaps that compound";verdict="The right product — but users aren't reliably reaching the value.";scarcity="Free 20-minute audit · A few spots open this month";}
+  else{badge="Critical gaps";verdict="Your product is ahead of the experience around it.";scarcity="Free 20-minute audit · A few spots open this month";}
   var circ=326.726, ring=document.getElementById("ring-fill");
   ring.style.strokeDashoffset=circ;
   requestAnimationFrame(function(){requestAnimationFrame(function(){
@@ -399,7 +400,6 @@ function showResult(name,total){
   });});
   document.getElementById("score-badge").textContent=badge;
   document.getElementById("score-verdict").textContent=verdict;
-  document.getElementById("cta-title").textContent=title;
   document.getElementById("scarcity-text").innerHTML=scarcity;
   var email=document.getElementById("email").value.trim();
   var fn=document.getElementById("followup-note");
