@@ -1,4 +1,34 @@
 <!DOCTYPE html>
+<!--
+  ============================================================
+  DESIGN SYSTEM — LOCKED. Do not deviate without updating this.
+  ------------------------------------------------------------
+  COLOR TOKENS (use the token, never raw hex):
+    --teal #0d9488     : ALL teal text, CTA fill, active states,
+                         focus rings, answered borders, section headings
+    --teal-dark #0f766e: HOVER/ACTIVE darkening ONLY. Never a text color.
+    --teal-mid #14b8a6 : hover borders only
+    --ink #111827      : primary text, headings, score number
+    --ink-muted #6b7280: ALL secondary text (labels, eyebrows,
+                         captions, footer). Min size 11px. (4.8:1 on white)
+  RADII:
+    --radius 14px  : every card, no exceptions
+    --radius-sm 8px: every button
+    --radius-xs 6px: inputs + option chips
+  CARDS: bg #fff, 1px solid --border, 14px radius, 20px (1.25rem)
+         padding, .625rem margin-bottom. ALL cards identical.
+  EYEBROW (any small label inside a card): DM Sans, 11px, weight 600,
+         --ink-muted, uppercase, letter-spacing .08em. ONE spec.
+         Classes: .score-eyebrow .cta-eyebrow — keep identical.
+  FRAUNCES HEADINGS: weight 400, 20px for in-card headings
+         (.score-verdict, .cta-card h3 — keep identical).
+         h1 hero is the only heavier/larger Fraunces.
+  BUTTONS: inline-block, width auto, centered via wrapper.
+         NEVER full-width block. (.submit-btn, .cta-btn)
+  Secondary action (.restart-btn): underlined text link,
+         --ink-muted, never a bordered box.
+  ============================================================
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -31,7 +61,7 @@ h1{font-family:"Fraunces",serif;line-height:1.1;color:var(--ink);margin-bottom:1
 .header-desc{font-size:15px;color:var(--ink-muted);line-height:1.7;max-width:540px;margin-bottom:1rem}
 .insight-strip{border-left:3px solid var(--teal);border-radius:0;padding:.75rem 1.25rem;font-size:13px;color:var(--ink-muted);line-height:1.65;background:var(--card)}
 
-.section-heading{font-size:17px;font-weight:500;color:var(--teal-dark);margin:2.25rem 0 .875rem;letter-spacing:-.01em}
+.section-heading{font-size:17px;font-weight:500;color:var(--teal);margin:2.25rem 0 .875rem;letter-spacing:-.01em}
 
 .contact-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.25rem;margin-top:1.5rem}
 .card-label{font-size:12px;font-weight:600;color:var(--ink);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.75rem}
@@ -74,15 +104,16 @@ h1{font-family:"Fraunces",serif;line-height:1.1;color:var(--ink);margin-bottom:1
 .progress-bar{height:3px;background:var(--border);border-radius:2px;margin-bottom:.625rem;overflow:hidden}
 .progress-fill{height:100%;background:var(--teal);border-radius:2px;transition:width .3s;width:0%}
 .progress-label{font-size:12px;color:var(--ink-muted);margin-bottom:.875rem}
-.submit-btn{width:100%;padding:15px;background:var(--teal);color:white;border:none;border-radius:var(--radius-sm);font-family:"DM Sans",sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:background .15s,transform .1s;letter-spacing:.01em}
+.submit-wrap{text-align:center}
+.submit-btn{display:inline-block;width:auto;padding:15px 32px;background:var(--teal);color:white;border:none;border-radius:var(--radius-sm);font-family:"DM Sans",sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:background .15s,transform .1s;letter-spacing:.01em}
 .submit-btn:hover{background:var(--teal-dark)}
 .submit-btn:active{transform:scale(.99)}
 .submit-btn:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 .error-msg{font-size:13px;color:#991b1b;text-align:center;margin-top:10px;display:none;padding:10px;background:#fff5f5;border-radius:var(--radius-xs);border:1px solid #fecaca}
 
 .result-section{display:none;padding-top:.5rem}
-.score-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;margin-bottom:.625rem;display:flex;align-items:center;gap:1.75rem}
-.score-eyebrow{font-size:11px;color:var(--ink-muted);margin-bottom:.5rem;letter-spacing:.08em;text-transform:uppercase;font-family:"DM Sans",sans-serif}
+.score-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:.625rem;display:flex;align-items:center;gap:1.75rem}
+.score-eyebrow{font-family:"DM Sans",sans-serif;font-size:11px;font-weight:600;color:var(--ink-muted);margin-bottom:.5rem;letter-spacing:.08em;text-transform:uppercase}
 .score-ring-wrap{position:relative;width:132px;height:132px;flex:none}
 .score-ring{display:block}
 .ring-track{stroke:#e5e7eb}
@@ -91,9 +122,9 @@ h1{font-family:"Fraunces",serif;line-height:1.1;color:var(--ink);margin-bottom:1
 .score-number{font-family:"Fraunces",serif;font-size:40px;font-weight:400;line-height:1;color:var(--ink)}
 .score-denom{font-size:13px;color:var(--ink-muted);font-family:"DM Sans",sans-serif}
 .score-summary{flex:1;min-width:0}
-.score-verdict{font-family:"Fraunces",serif;font-size:19px;font-weight:500;line-height:1.35;color:var(--ink);margin:0 0 .875rem}
+.score-verdict{font-family:"Fraunces",serif;font-size:20px;font-weight:400;line-height:1.35;color:var(--ink);margin:0 0 .875rem}
 .score-badge{display:inline-block;padding:6px 16px;background:rgba(13,148,136,.1);color:var(--teal);border-radius:100px;font-size:12.5px;font-weight:600;font-family:"DM Sans",sans-serif;letter-spacing:.01em}
-@media(max-width:560px){.score-card{flex-direction:column;text-align:center;gap:1.25rem;padding:1.75rem 1.25rem}.score-summary{display:flex;flex-direction:column;align-items:center}}
+@media(max-width:560px){.score-card{flex-direction:column;text-align:center;gap:1.25rem;padding:1.25rem}.score-summary{display:flex;flex-direction:column;align-items:center}}
 .result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:.625rem}
 .result-card-label{font-size:12px;font-weight:500;color:var(--ink-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem}
 .breakdown-item{margin-bottom:13px}
@@ -105,16 +136,23 @@ h1{font-family:"Fraunces",serif;line-height:1.1;color:var(--ink);margin-bottom:1
 .bar-fill{height:100%;border-radius:2px;transition:width .9s cubic-bezier(.16,1,.3,1)}
 .bar-high{background:var(--teal)}.bar-mid{background:#f59e0b}.bar-low{background:#ef4444}
 .cta-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:.625rem}
-.cta-eyebrow{font-size:12px;font-weight:500;color:var(--teal-dark);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.5rem}
+.cta-eyebrow{font-family:"DM Sans",sans-serif;font-size:11px;font-weight:600;color:var(--ink-muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
 .cta-card h3{font-family:"Fraunces",serif;font-size:20px;font-weight:400;color:var(--ink);line-height:1.35;margin-bottom:.625rem}
 .cta-card p{font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:1.25rem}
-.cta-btn{display:block;width:100%;padding:14px;background:var(--teal);color:white;border:none;border-radius:var(--radius-sm);font-family:"DM Sans",sans-serif;font-size:14.5px;font-weight:500;text-align:center;cursor:pointer;text-decoration:none;transition:background .15s}
+.cta-btn-wrap{text-align:center;margin-top:.25rem}
+.get-block{margin:0 0 1.25rem;padding:0;list-style:none}
+.get-block li{position:relative;padding-left:1.375rem;font-size:14px;color:var(--ink);line-height:1.6;margin-bottom:.5rem}
+.get-block li:last-child{margin-bottom:0}
+.get-block li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.get-label{font-family:"DM Sans",sans-serif;font-size:11px;font-weight:600;color:var(--ink-muted);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .625rem}
+.paid-hint{font-size:13px;color:var(--ink-muted);line-height:1.6;margin-top:.875rem;text-align:center}
+.cta-btn{display:inline-block;width:auto;padding:14px 28px;background:var(--teal);color:white;border:none;border-radius:var(--radius-sm);font-family:"DM Sans",sans-serif;font-size:14.5px;font-weight:500;text-align:center;cursor:pointer;text-decoration:none;transition:background .15s}
 .cta-btn:hover{background:var(--teal-dark)}
 .cta-btn:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 .scarcity{text-align:center;font-size:12px;color:var(--ink-muted);margin-top:.625rem}
-.restart-btn{display:block;width:100%;padding:13px;background:transparent;border:1px solid var(--border-mid);border-radius:var(--radius-sm);font-family:"DM Sans",sans-serif;font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;text-align:center;transition:all .15s;margin-top:.625rem}
-.restart-btn:hover{color:var(--teal);border-color:var(--teal)}
-.restart-btn:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.restart-btn{display:block;margin:1rem auto 0;padding:8px 18px;background:transparent;border:none;font-family:"DM Sans",sans-serif;font-size:13px;font-weight:500;color:var(--ink-muted);cursor:pointer;text-align:center;text-decoration:underline;text-underline-offset:3px;transition:color .15s}
+.restart-btn:hover{color:var(--teal)}
+.restart-btn:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:2px}
 
 .footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .footer-logo{width:24px;height:24px;object-fit:contain;opacity:.5;border-radius:50%;mix-blend-mode:multiply}
@@ -185,7 +223,7 @@ select.placeholder{color:var(--ink-muted)}.followup-note{text-align:center;font-
       <div class="progress-fill" id="progress-fill"></div>
     </div>
     <p class="progress-label" id="progress-label" aria-live="polite">0 of 10 answered</p>
-    <button class="submit-btn" onclick="submitScorecard()">Get my score →</button>
+    <div class="submit-wrap"><button class="submit-btn" onclick="submitScorecard()">See your Product-User Fit score →</button></div>
     <p class="error-msg" id="error-msg" role="alert">Please fill in your name and email, answer all 10 questions, and select your biggest challenge.</p>
   </div>
 </div>
@@ -218,8 +256,15 @@ select.placeholder{color:var(--ink-muted)}.followup-note{text-align:center;font-
     <div class="cta-eyebrow">What this means for you</div>
     <h3 id="cta-title"></h3>
     <p id="cta-body"></p>
-    <a href="https://calendly.com/viinniemehta/30min" target="_blank" rel="noopener noreferrer" class="cta-btn">Book a free 30-min strategy session →</a>
+    <p class="get-label">What you'll get on the audit</p>
+    <ul class="get-block">
+      <li>Where your product-user fit is breaking — specific to your answers, not generic advice</li>
+      <li>What that gap is quietly costing you right now</li>
+      <li>The fix path, in order, and exactly where to start first</li>
+    </ul>
+    <div class="cta-btn-wrap"><a href="https://calendly.com/viinniemehta/30min" target="_blank" rel="noopener noreferrer" class="cta-btn">Book my 20-min audit →</a></div>
     <p class="scarcity" id="scarcity-text"></p>
+    <p class="paid-hint">The audit is free and complete on its own. If you want help executing the fix path afterward, that's where a focused Sprint comes in — but the call itself has no pitch.</p>
     <p class="followup-note" id="followup-note" style="display:none"></p>
   </div>
   <button class="restart-btn" onclick="resetScorecard()">Start over</button>
@@ -355,13 +400,13 @@ function showResult(name,total){
   document.getElementById("result-name").textContent=name+"'s score";
   document.getElementById("score-number").textContent=total;
   var badge,title,scarcity,body,verdict;
-  if(total>=36){badge="Strong foundations";verdict="You're in the top tier. The work now is speed, not direction.";title="Your foundations are solid. The question now is speed.";scarcity="Early access: <strong>$200</strong> · Regular price $500";}
-  else if(total>=21){badge="Gaps that compound";verdict="The right product — but users aren't reliably reaching the value.";title="You're building the right thing — but users aren't getting there.";scarcity="Early access: <strong>$200</strong> · 5 spots remaining · Regular price $500";}
-  else{badge="Critical gaps";verdict="Your product is ahead of the experience around it.";title="Your product is ahead of your user experience.";scarcity="Early access: <strong>$200</strong> · 5 spots remaining · Regular price $500";}
+  if(total>=36){badge="Strong foundations";verdict="You're in the top tier. The work now is speed, not direction.";title="Your foundations are solid. The question now is speed.";scarcity="Free 20-minute audit · No pitch, just the diagnosis";}
+  else if(total>=21){badge="Gaps that compound";verdict="The right product — but users aren't reliably reaching the value.";title="You're building the right thing — but users aren't getting there.";scarcity="Free 20-minute audit · A few spots open this month";}
+  else{badge="Critical gaps";verdict="Your product is ahead of the experience around it.";title="Your product is ahead of your user experience.";scarcity="Free 20-minute audit · A few spots open this month";}
   var challengeBody={
-    aha:"You told me getting users to their first aha moment is your biggest challenge. That moment isn't a feature — it's a sequence, and most products bury it three clicks too deep. In 30 minutes we'll map exactly where your activation path loses people and what to cut so the value lands sooner.",
-    retention:"You told me keeping users past week 1 is what's hurting most. Week-1 churn is almost never about the product being wrong — it's about the user never reaching the reason to come back. We'll spend 30 minutes pinpointing your drop-off moment and the specific hook that brings them back on day 3 and day 7.",
-    features:"You told me building the right features in the right order is the hard part. Most roadmaps are sequenced by what's easy to build, not by what unlocks retention. In 30 minutes we'll work out which single thing to build next — and, just as importantly, what to stop building."
+    aha:"You told me getting users to their first aha moment is your biggest challenge. That moment isn't a feature — it's a sequence, and most products bury it three clicks too deep. In the audit we'll map exactly where your activation path loses people and what to cut so the value lands sooner.",
+    retention:"You told me keeping users past week 1 is what's hurting most. Week-1 churn is almost never about the product being wrong — it's about the user never reaching the reason to come back. In the audit we'll pinpoint your drop-off moment and the specific hook that brings them back on day 3 and day 7.",
+    features:"You told me building the right features in the right order is the hard part. Most roadmaps are sequenced by what's easy to build, not by what unlocks retention. In the audit we'll work out which single thing to build next — and, just as importantly, what to stop building."
   };
   body=challengeBody[selectedChallenge]||"In 30 focused minutes we'll work through exactly where your product-user fit is breaking down and what to do about it first.";
   var circ=326.726, ring=document.getElementById("ring-fill");
